@@ -21,7 +21,8 @@ std::string prefix(const std::string_view msg)
 
 void run_server()
 {
-    original::endpoint ep(original::sockets::IPV4, "127.0.0.1", PORT);
+    const std::string addr = "127.0.0.1";
+    original::endpoint ep(original::sockets::IPV4, addr, PORT);
 
     original::singleton<original::taskDelegator>::reset();
     auto& delegator = original::singleton<original::taskDelegator>::instance();
@@ -31,7 +32,7 @@ void run_server()
 
     auto server_task = [ep]() -> void {
 
-        std::cout << prefix("server") << " listening on 127.0.0.1:" << PORT << "\n";
+        std::cout << prefix("server") << " listening on: " << addr << " << PORT << "\n";
 
         const original::acceptor a(ep);
         const original::socket client = a.accept();
@@ -67,7 +68,8 @@ void run_server()
 
 void run_client()
 {
-    const original::endpoint ep(original::sockets::IPV4, "127.0.0.1", PORT);
+    const std::string addr = "127.0.0.1";
+    const original::endpoint ep(original::sockets::IPV4, addr, PORT);
 
     const original::socket client(original::sockets::IPV4,
                   original::sockets::STREAM,
@@ -75,7 +77,7 @@ void run_client()
 
     client.connect(ep);
 
-    std::cout << prefix("client") << " connected to server\n";
+    std::cout << prefix("client") << " connected to server " << addr << std::endl;
 
     while (true)
     {
