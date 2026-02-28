@@ -30,9 +30,9 @@ void run_server()
     original::singleton<original::threadPoolExecutor>::reset(delegator);
     auto& executor = original::singleton<original::threadPoolExecutor>::instance();
 
-    auto server_task = [ep]() -> void {
+    auto server_task = [ep, addr]() -> void {
 
-        std::cout << prefix("server") << " listening on: " << addr << " << PORT << "\n";
+        std::cout << prefix("server") << " listening on: " << addr << ":" << PORT << std::endl;
 
         const original::acceptor a(ep);
         const original::socket client = a.accept();
