@@ -1,0 +1,15 @@
+cmake-build-*/
+**/.idea/
+build/
+install/
+.vs/
+.vscode/
+out/
+original/
+**/__pycache__/
+.cache/
+
+test.exe
+original.zip
+original.rar
+src/.DS_Store
