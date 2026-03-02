@@ -90,7 +90,7 @@ void run_client()
         if (input == "exit")
             break;
 
-        client.send({reinterpret_cast<const byte*>(input.data()), static_cast<original::u_integer>(input.size())});
+        static_cast<void>(client.send({reinterpret_cast<const byte*>(input.data()), static_cast<original::u_integer>(input.size())}));
 
         std::array<char, 1024> buf{};
         const auto n = client.recv({reinterpret_cast<byte*>(buf.data()), sizeof(buf)});
